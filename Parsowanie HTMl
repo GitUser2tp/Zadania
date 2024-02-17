@@ -1,0 +1,21 @@
+#język: Python
+
+from bs4 import BeautifulSoup
+
+with open("Podręczniki", encoding="utf-8") as file:
+    html_content = file.read()
+
+soup = BeautifulSoup(html_content, "html.parser")
+
+books = soup.find_all("div", class_="book-info")
+
+for book in books:
+ 
+    title = book.find("h3", class_="book-info-title").text.strip()
+    
+    price = book.find("span", class_="price").text.strip()
+    
+    # Wypisanie tytułu i ceny książki
+    print("Tytuł:", title)
+    print("Cena:", price)
+    print()
